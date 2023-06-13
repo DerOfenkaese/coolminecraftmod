@@ -2,7 +2,7 @@
 	"schemaVersion": 1,
 	"id": "funni",
 	"version": "${version}",
-	"name": "Test mod",
+	"name": "Funni mod",
 	"description": "Trying stuff",
 	"authors": [
 		"DerOfenkäse"

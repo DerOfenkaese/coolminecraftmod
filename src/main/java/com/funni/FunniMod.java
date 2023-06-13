@@ -2,30 +2,38 @@ package com.funni;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
-
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.world.World;
 
 public class FunniMod implements ModInitializer {
-    // This logger is used to write text to the console and the log file.
-    // It is considered best practice to use your mod id as the logger's name.
-    // That way, it's clear which mod wrote info, warnings, and errors.
-    public static final Logger LOGGER = LoggerFactory.getLogger("funni");
     
-    public static final Item FUNNI_STICK = new Item(new FabricItemSettings());
+    static class FunniStick extends Item {
+        
+        public FunniStick(Settings settings) {
+            super(settings);
+        }
+        
+        @Override
+        public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
+            playerEntity.playSound(SoundEvents.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.0F);
+            return TypedActionResult.success(playerEntity.getStackInHand(hand));
+        }
+    }
+    
+    public static final FunniStick FUNNI_STICK = Registry.register(Registries.ITEM, new Identifier("funni", "funni_stick"), new FunniStick(new FabricItemSettings().maxCount(1)));
+    
 
     @Override
     public void onInitialize() {
-        // This code runs as soon as Minecraft is in a mod-load-ready state.
-        // However, some things (like resources) may still be uninitialized.
-        // Proceed with mild caution.
-
-        Registry.register(Registries.ITEM, new Identifier("funni", "funni_stick"), FUNNI_STICK);
-
+        
+        
     }
 }

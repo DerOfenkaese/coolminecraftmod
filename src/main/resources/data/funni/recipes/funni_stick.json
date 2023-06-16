@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      " # ",
+      "YXY",
+      " X "
+    ],
+    "key": {
+      "#": {
+        "item": "minecraft:totem_of_undying"
+      },
+      "X": {
+        "item": "minecraft:diamond"
+      },
+      "Y": {
+        "item":"minecraft:orange_dye"
+      }
+    },
+    "result": {
+      "item": "funni:funni_stick",
+      "count": 1
+    }
+  }
